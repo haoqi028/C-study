@@ -1,0 +1,79 @@
+using System;
+					
+public class Program
+{
+	public static void Main()
+	{
+		ConsoleKeyInfo Key;// Set a key before loop
+		do//Creating a loop	
+		{
+		//Showing the name of App	
+		Console.WriteLine("Mathematical Lines App");
+			
+		//Input
+		Console.WriteLine("Enter Coordinate xA: ");
+		double xA = Convert.ToDouble(Console.ReadLine());//All inputs in double to allow decimals
+		Console.WriteLine("Enter Coordinate yA: ");
+		double yA = Convert.ToDouble(Console.ReadLine());
+		Console.WriteLine("Enter Coordinate xB: ");
+		double xB = Convert.ToDouble(Console.ReadLine());
+		Console.WriteLine("Enter Coordinate yB: ");
+		double yB = Convert.ToDouble(Console.ReadLine());
+		
+		Console.WriteLine(" ");
+			//Processing and Output
+		//Slope
+		double slope = (yB - yA)/(xB-xA);
+		Console.WriteLine("Slope: "+ slope);
+		Console.WriteLine(" ");
+		
+		//Distance
+		double Distance = (Math.Sqrt((yB-yA)*(yB-yA)+(xB-xA)*(xB-xA)));
+        Console.WriteLine("Distance: "+ Distance.ToString("F2"));
+		Console.WriteLine(" ");
+		
+		//Midpoint
+		double MPoX = (xB+xA)/2.0;
+		double MPoY = (yB+yA)/2.0;
+		Console.WriteLine("Midpoint: "+"("+ MPoX +","+ MPoY + ")");
+		Console.WriteLine(" ");
+		Console.WriteLine(" ");
+		
+		Console.WriteLine("Bonus Features:");
+		Console.WriteLine(" ");
+		
+		//x-intercept
+		double xintercept = xA-yA/(slope);
+		Console.WriteLine("x-intercept: "+"("+ xintercept + ",0)");
+        Console.WriteLine(" ");
+		
+		//y-intercept
+		double yintercept = yA -(slope)*xA;
+		Console.WriteLine("y-interrcept: "+"(0," + yintercept +")");
+		Console.WriteLine(" ");
+		
+		//x-axis angle
+		double angleRad = Math.Atan(slope);
+		double angleDeg = angleRad*180/ Math.PI;
+		double angle;
+			
+		if(angleDeg< 0)//Avoid negative degrees
+		{
+			angle = angleDeg*-1;
+		}
+		else
+		{
+			angle = angleDeg;
+		}
+		Console.WriteLine("x-axis angle in degrees: "+angle.ToString("F0"));
+        
+			//Restart and exit
+			Console.WriteLine("\n\nEnter any buttom to restart");
+			Console.WriteLine("Enter 'E' to exit");
+			Key = Console.ReadKey();
+			
+			Console.Clear();//Clear
+		}	
+		while(Key.Key != ConsoleKey.E);//The loop stop when user type "E"
+	}
+}
