@@ -1,0 +1,67 @@
+/*
+Programmer:Haoqi Zhang	
+Date:Nov,5,2025
+Project: U6A2PayrollCalculator
+Purpose: To make a program that allows to calculate the salary
+*/
+using System;
+					
+public class Program
+{//start of program
+	static double GetDouble()
+	{//start of getting double 
+		
+		double n;
+		Error://ensure successfully getting formula in the correct formula
+		if(!(double.TryParse(Console.ReadLine(),out n)))
+		{
+			Console.WriteLine("INVALID INPUT!");
+		    goto Error;
+	    }
+		return n;
+	}//end of getting double
+					
+	static double lowGrossPay(double n, double m)
+	{//start to process the low pay
+		double p;
+		p = n * m;
+		return p;
+	}//end of low pay
+		
+	static double highGrossPay(double n, double m)
+	{
+		double p;
+		p = 40 * n +(m - 40) * (1.5*n);
+		return p;
+	}//end of high pay
+		
+	static void Display(double grosspay)
+	{
+		Console.WriteLine("The Gross Pay is: "+ grosspay);
+	}
+		
+	public static void Main()
+	{
+		double p = 0;
+		Console.WriteLine("Welcome to Haoqi's salary calculator!");
+		Console.WriteLine("Please enter the hourly rate.");
+		double n = GetDouble();
+		mError:
+		Console.WriteLine("Please enter the hours worked");
+		double m = GetDouble();
+		if(m<=40&&m>=0)
+		{
+			 p = lowGrossPay(n,m);
+		}
+		else if(m>40)
+		{
+			p = highGrossPay(n,m);
+		}
+		else
+		{
+			goto mError;
+		}
+			Display(p);
+
+	}//end of main
+}//end of program
