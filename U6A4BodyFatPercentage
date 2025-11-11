@@ -1,0 +1,42 @@
+//Programmer:Haoqi Zhang
+//Date:November 10th, 2025
+//Project: U6A4BodyFatPercentage
+//Purpose: To build a program to calculate the body fat percentage by known datas 
+using System;
+		
+public class Program
+{
+	static double Getdouble(String data){
+		double n;
+		Error://ensure input in correct formula
+		Console.WriteLine("Please enter the "+data+"(in):");
+		if(!(double.TryParse(Console.ReadLine(), out n))){
+			Console.WriteLine("INVALID INPUT!");
+			goto Error;
+		}
+		return n;
+	}//end of getdouble
+	
+	static double BD(double a, double b, double c, double d){
+		double n = 1.29579-0.35004*Math.Log(a+b-c, 10) + 0.22100*Math.Log(d,10);
+		Console.WriteLine("Your Body Density is: "+ n.ToString("F4")); 
+		return n;
+	}//end of BodyDensity
+	
+	static void BF(double a){
+		double n = ((495/a)-450)/100;
+		string bf = n.ToString("P1");
+		Console.WriteLine("The Body Density is "+bf);
+	}//end of BodyFatPercentage
+	
+		
+	public static void Main()
+	{
+		double we = Getdouble("Weist");
+		double hi = Getdouble("Hip");
+		double ne = Getdouble("Neck");
+		double he = Getdouble("Height");
+		double Bodydensity = BD(we, hi, ne, he);
+		BF(Bodydensity);
+	}//end of main
+}//end of program
