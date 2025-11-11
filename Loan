@@ -1,0 +1,57 @@
+/*
+Programmer:Haoqi Zhang	
+Date:Nov,7,2025
+Project: U6A2LoanCalculator
+Purpose: To make a program to calculate the loan payment
+*/
+using System;
+					
+public class Program
+{
+	static double Getdouble(String data){//Start of getting double data
+		double n;
+		Error://ensure input in correct formula
+		Console.WriteLine("Please enter the "+data+":");
+		if(!(double.TryParse(Console.ReadLine(), out n))){
+			Console.WriteLine("INVALID INPUT!");
+			goto Error;
+		}
+		return n;
+	}//end of getdouble
+	
+	static int Getint(String data){//start of getting int data
+		int n;
+		Error://ensure input incorrect formula
+		Console.WriteLine("Please enter the "+data +" :");
+		if(!(int.TryParse(Console.ReadLine(), out n))){
+			Console.WriteLine("INVALID INPUT!");
+			goto Error;
+		}
+		return n;
+	}//end of getint
+	
+	static double mPay(double l, double b, int c){//start of the processing method
+		double mP;
+		double r = b/100/12;//convert integer to percentage, then let yearly rate be monthly rate
+		double n = 12*c;//years to months
+		double N = Math.Pow(1+r, -n);//(1+r)^(-n)
+		mP =(r*l)/(1-N);//final 
+	   return mP;
+	}//end of mPay
+		
+		
+	public static void Main()
+	{
+		Console.WriteLine("Welcome to Haoqi's Loan Payment Calculator");
+		double L;
+		
+		L = Getdouble("Loan Amount");
+		
+		double R = Getdouble("Annual interest rate(%)");
+		
+		int N = Getint("Numbers of years");
+		Double mP = mPay(L, R, N);
+		Console.WriteLine("Monthly payment is: " + mP.ToString("C2"));
+		
+	}//end of main
+}//end of program
