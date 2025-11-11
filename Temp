@@ -1,0 +1,55 @@
+//Programmer:Haoqi Zhang
+//Date:November 4th, 2025
+//Project: U6A1TemperatureConversion
+//Purpose: To build a program to convert temperature from Celsius to F and K 
+using System;
+public class Program
+{
+    static double Getdouble(string data)//Input Method
+    {
+        double n;
+		Console.WriteLine("Please enter the temperature in Celsius");
+		Error:
+		if(!(double.TryParse(Console.ReadLine(), out n)))
+		{
+			Console.WriteLine("INVALID INPUT!");
+			goto Error;
+		}
+		return n;	
+    }//end of getdouble
+	
+	static double CelsiusToFahrenheit(double c)//Processing method(C to F)
+	{
+		double f;
+		f = c * 9/5 + 32;
+		return f;
+	}// end of C to F
+	
+	static double CelsiusToKelvin(double c)//Processing Method(C to K)
+	{
+		double k;
+		k = c+273.15;
+		return k;
+	}//end of C to K
+	
+	static void fWrite(double F)//Output Method
+	{
+		Console.WriteLine("The temperature in Fahrenheit is :"+F);
+	}//end of fWrite
+	
+	static void kWrite(double K)//Output Method
+	{
+		Console.WriteLine("The temperature in Fahrenheit is :"+K);
+	}//end of kWrite
+	
+	public static void Main()//Main 
+	{
+		Console.WriteLine("Thank you for using Haoqi's Temperature Conversion App!");
+		double c= Getdouble("c");
+		double F= CelsiusToFahrenheit(c);
+		fWrite(F);
+		double K = CelsiusToKelvin(c);
+		kWrite(K);
+		Console.WriteLine("Looking Forward your next using!");
+	}//end of Main
+}//end of Programming
